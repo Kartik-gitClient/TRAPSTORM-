@@ -10,7 +10,7 @@ function Home() {
 
           {/* Main Title */}
           <motion.h1
-            className="text-6xl sm:text-7xl font-bold mt-10  tracking-tight text-gray-900"
+            className="text-6xl  font-bold mt-10  text-gray-900"
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, type: "spring", stiffness: 120 }}
