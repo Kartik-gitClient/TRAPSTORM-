@@ -17,7 +17,7 @@ function ModeSelect() {
       <Header />
       <div className="min-h-screen flex flex-col items-center justify-start bg-white text-black p-6">
         <motion.h1
-          className="text-6xl font-extrabold text-black drop-shadow-2xl"
+          className="text-4xl font-extrabold text-black drop-shadow-2xl"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, type: "spring", stiffness: 120 }}

@@ -54,7 +54,7 @@ function Lobby() {
       >
         {/* Heading */}
         <motion.h1
-          className="text-6xl font-extrabold drop-shadow-2xl"
+          className="text-4xl font-extrabold drop-shadow-2xl"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, type: "spring", stiffness: 120 }}
