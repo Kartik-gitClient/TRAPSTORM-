@@ -98,14 +98,14 @@ function Play() {
         {currentPlayer}'s Turn
       </motion.h3>
 
-      <motion.h3
+      <motion.h4
         className="text-3xl font-bold mb-8"
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.3 }}
       >
        Next {nextPlayer}'s Turn
-      </motion.h3>
+      </motion.h4>
 
 
       <motion.div

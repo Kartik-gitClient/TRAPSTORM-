@@ -67,7 +67,7 @@ function MindMeld() {
         navigate("/results"); // 🎮 Normal Mode
       }
     } else {
-      nextTurn(); // Continue to next player or round
+      nextTurn(); 
     }
   };
 
