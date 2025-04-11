@@ -20,7 +20,7 @@ function App() {
         <Route path="/lobby" element={<Lobby />} />
         <Route path="/play" element={<Play />} /> {/* Storm Mode */}
         <Route path="/roast-rumble" element={<RoastRumble />} />
-         <Route path="/mind-meld" element={<RoastRumble />} />
+         <Route path="/mind-meld" element={<MindMeld />} />
         
 
         <Route path="/play" element={<Play />} /> {/* storm mode */}
