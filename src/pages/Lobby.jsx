@@ -2,13 +2,13 @@ import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useGame } from "../context/GameContext";
-import { motion } from "framer-motion"; // Import Framer Motion
+import { motion } from "framer-motion";
 
 function Lobby() {
   const [players, setPlayers] = useState([""]);
   const navigate = useNavigate();
   const { addPlayers, mode, setSelectedCategory } = useGame();
-  const [selected, setSelected] = useState("Name Drop"); // local state to reflect UI
+  const [selected, setSelected] = useState("Name Drop");
 
   const handleChange = (index, value) => {
     const updated = [...players];
@@ -20,20 +20,18 @@ function Lobby() {
     setPlayers([...players, ""]);
   };
 
-
   const startGame = () => {
     const validPlayers = players.filter((p) => p.trim() !== "");
 
-    if (validPlayers.length < 2 || validPlayers.length >=8 ) {
+    if (validPlayers.length < 2 || validPlayers.length >= 8) {
       alert("ENTER VALID PLAYER LENGTH TO PROCEED MIN(2) MAX(8)");
-      navigate('/')
+      navigate("/");
       return;
     }
 
     addPlayers(validPlayers);
-    setSelectedCategory(selected); // ✅ properly store category in context
+    setSelectedCategory(selected);
 
-    // 🔥 Redirect based on mode
     if (mode === "storm") {
       navigate("/play");
     } else if (mode === "normal" && selected) {
@@ -44,50 +42,49 @@ function Lobby() {
     }
   };
 
-
   return (
     <>
       <Header />
       <motion.div
-        className="h-screen flex flex-col justify-start items-center bg-gradient-to-r from-purple-300 via-purple-500 to-purple-700 text-white p-6"
+        className="h-screen flex flex-col justify-start items-center bg-white text-black p-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 1 }}
       >
-        {/* Main Heading with Animation */}
+        {/* Heading */}
         <motion.h1
-          className="text-6xl font-extrabold text-white drop-shadow-2xl"
-          initial={{ opacity: 0, scale: 0.8 }} // Start smaller and invisible
-          animate={{ opacity: 1, scale: 1 }} // Fade in and scale up
-          transition={{ duration: 1.5, type: "spring", stiffness: 120 }} // Animation duration and type
+          className="text-6xl font-extrabold drop-shadow-2xl"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.5, type: "spring", stiffness: 120 }}
         >
           Trapstorm
         </motion.h1>
-        <h2 className="text-5xl font-bold mt-10 mb-4 drop-shadow-2xl">👥 Lobby👥 </h2>
-        <p className="mb-4 text-lg text-purple-200">Add players and get ready to Trapstorm!</p>
 
-        {/* 💥 New animated category selector */}
+        <h2 className="text-5xl font-bold mt-10 mb-4">👥 Lobby 👥</h2>
+        <p className="mb-4 text-lg text-gray-500">Add players and get ready to Trapstorm!</p>
 
-        {mode == 'normal' ?
-        <motion.div
-          className="mb-6 w-full max-w-md"
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-        >
-          <label className="block mb-2 font-semibold text-white">🎯 Choose Category if (Normal Mode)</label>
-          <select
-            className="w-full p-3 rounded-xl bg-purple-100 text-purple-900 shadow-inner"
-            value={selected}
-            onChange={(e) => setSelected(e.target.value)}
+        {/* Category Select (if normal mode) */}
+        {mode === "normal" && (
+          <motion.div
+            className="mb-6 w-full max-w-md"
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
           >
-            <option value="Name Drop">Name Drop</option>
-            <option value="Roast Rumble">Roast Rumble</option>
-            <option value="Mind Meld">Mind Meld</option>
-          </select>
-        </motion.div> : console.log("PLAYING STORM MODE")
-}
+            <label className="block mb-2 font-semibold">🎯 Choose Category</label>
+            <select
+              className="w-full p-3 rounded-xl bg-gray-100 text-black border border-gray-300 shadow-inner"
+              value={selected}
+              onChange={(e) => setSelected(e.target.value)}
+            >
+              <option value="Name Drop">Name Drop</option>
+              <option value="Roast Rumble">Roast Rumble</option>
+              <option value="Mind Meld">Mind Meld</option>
+            </select>
+          </motion.div>
+        )}
 
         {/* Player Inputs */}
         <motion.div
@@ -99,7 +96,7 @@ function Lobby() {
           {players.map((name, i) => (
             <motion.input
               key={i}
-              className="w-full p-3 rounded-lg bg-purple-100 text-purple-900 placeholder-purple-500"
+              className="w-full p-3 rounded-lg bg-gray-100 text-black placeholder-gray-400 border border-gray-300"
               placeholder={`Player ${i + 1} name`}
               value={name}
               onChange={(e) => handleChange(i, e.target.value)}
@@ -108,8 +105,9 @@ function Lobby() {
               transition={{ duration: 0.5, delay: i * 0.2 }}
             />
           ))}
+
           <motion.button
-            className="w-full bg-purple-700 text-white font-semibold px-6 py-4 rounded-2xl shadow-xl hover:bg-purple-800 transition"
+            className="w-full bg-black text-white font-semibold px-6 py-4 rounded-2xl shadow hover:bg-gray-900 transition"
             onClick={addPlayer}
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -118,9 +116,9 @@ function Lobby() {
           </motion.button>
         </motion.div>
 
-        {/* Start Game */}
+        {/* Start Game Button */}
         <motion.button
-          className="bg-white text-purple-800 font-semibold px-6 py-4 border-2 border-purple-700 rounded-2xl hover:bg-purple-200 transition"
+          className="bg-black text-white font-semibold px-6 py-4 border-2 border-black rounded-2xl hover:bg-gray-900 transition"
           onClick={startGame}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

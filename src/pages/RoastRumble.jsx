@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useGame } from "../context/GameContext";
 import { useNavigate } from "react-router-dom";
-import roastRumbleData from "./data/Data.json"; // ✅ Import Roast Rumble JSON
-import { motion } from "framer-motion"; // ✅ Import Framer Motion
+import roastRumbleData from "./data/Data.json";
+import { motion } from "framer-motion";
 
-const roastDebates = roastRumbleData.roastRumble; // ✅ Use JSON data
+const roastDebates = roastRumbleData.roastRumble;
 
 function RoastRumble() {
   const {
@@ -57,85 +57,64 @@ function RoastRumble() {
     const isLastRound = roundNumber >= 3;
 
     if (isLastPlayer && isLastRound) {
-      if (mode === "storm") {
-        nextCategory(navigate); // 🔥 Move to next category in storm mode
-      } else {
-        navigate("/results"); // Normal mode
-      }
+      mode === "storm" ? nextCategory(navigate) : navigate("/results");
     } else {
       nextTurn();
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-purple-300 via-purple-500 to-purple-700 text-white p-6">
-      {/* Category and Mode Information */}
+    <div className="min-h-screen flex flex-col items-center justify-center bg-white text-black p-6">
+      {/* Mode + Category */}
       <motion.div
-        className="text-sm mb-3 bg-white text-black px-3 py-1 rounded-full shadow"
+        className="text-lg mb-3 mt-10 bg-black text-white px-3 py-1 rounded-lg shadow"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        transition={{ duration: 0.6 }}
       >
-        {mode === "storm" ? "🌪️ Storm Mode" : "🎮 Normal Mode"} | Category: 🔥 ROAST RUMBLE
+        {mode === "storm" ? "🌪️ Storm Mode" : "🎮 Normal Mode"} | Category: Roast Rumble
       </motion.div>
 
-      {/* Title and Round Information */}
-      <motion.h2
-        className="text-3xl font-bold mb-3"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        🔥 Roast Rumble
+      {/* Titles */}
+      <motion.h2 className="text-3xl font-bold mb-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        Roast Rumble
       </motion.h2>
-      <motion.h3
-        className="text-xl mb-1"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
+      <motion.h3 className="text-sm mb-1" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         Round {roundNumber}
       </motion.h3>
-      <motion.h4
-        className="text-2xl font-semibold mb-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-      >
+      <motion.h4 className="text-lg font-semibold mb-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         {currentPlayer}'s Debate
       </motion.h4>
 
-      {/* Debate Text Box */}
+      {/* Debate Box */}
       <motion.div
-        className="bg-purple-600 text-white p-4 rounded-lg shadow-lg mb-6 max-w-md w-full text-center"
+        className="bg-gray-100 text-black p-5 rounded-xl shadow-lg max-w-md w-full text-center mb-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <p className="text-xl font-bold">{debate}</p>
+        <p className="text-lg font-bold">{debate}</p>
       </motion.div>
 
-      {/* Judge Performance Button */}
+      {/* Judge Button */}
       {!showChecklist && (
         <motion.button
-          className="bg-white text-purple-800 font-semibold px-6 py-4 border-2 border-purple-700 rounded-2xl hover:bg-purple-100 transition"
+          className="border border-black text-black px-6 py-3 rounded-xl hover:bg-black hover:text-white transition"
           onClick={() => setShowChecklist(true)}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
         >
           ✅ Judge Performance
         </motion.button>
       )}
 
-      {/* Checklist Section */}
+      {/* Checklist */}
       {showChecklist && (
         <>
           <motion.div
-            className="bg-white text-purple-800 font-semibold px-6 py-4 w-2/3 my-4 border-2 border-purple-700 rounded-2xl hover:bg-purple-100 transition"
+            className="bg-gray-100 text-black font-semibold px-6 py-4 w-2/3 my-4 rounded-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
           >
             <p className="text-lg font-bold mb-3">Judge Checklist:</p>
             {Object.entries(checklist).map(([key, value]) => (
@@ -152,26 +131,30 @@ function RoastRumble() {
           </motion.div>
 
           {/* Vote Buttons */}
-          <div className="flex gap-4">
-            <motion.button
-              className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl w-2/3 text-xl shadow-xl"
-              onClick={() => handleVote("rope")}
-              disabled={checklist.refused}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 1 }}
-            >
-              ✅ Rope (Passed)
-            </motion.button>
-            <motion.button
-              className="bg-red-500 hover:bg-red-600 text-white px-8 py-4 rounded-xl w-2/3 text-xl shadow-xl"
-              onClick={() => handleVote("trap")}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 1.2 }}
-            >
-              ❌ Trap (Failed)
-            </motion.button>
+          <div className="flex flex-col gap-6 items-center w-full max-w-md">
+          <motion.button
+            className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl w-1/2 text-xl shadow-xl"
+            onClick={() => handleVote("rope")}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, delay: 0.8 }}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0 }}
+          >
+            ✅ Rope (Correct)
+          </motion.button>
+
+          <motion.button
+            className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl w-1/2 text-xl shadow-xl"
+            onClick={() => handleVote("trap")}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, delay: 1 }}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0 }}
+          >
+            ❌ Trap (Fail)
+          </motion.button>
           </div>
         </>
       )}
