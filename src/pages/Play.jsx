@@ -76,7 +76,7 @@ function Play() {
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }} // Animation duration
     >
-      <div className="text-sm mb-3 mt-10 bg-white text-black px-3 py-1 rounded-full shadow">
+      <div className="text-lg mb-3 mt-10 bg-white text-black px-3 py-1 rounded-lg shadow">
         {mode === "storm" ? "🌪️ Storm Mode" : "🎮 Normal Mode"} | Category: NAME DROP
       </div>
 
@@ -136,7 +136,7 @@ function Play() {
       {isTimeUp && (
         <div className="flex flex-col gap-6 items-center">
           <motion.button
-            className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl w-2/3 text-xl shadow-xl"
+            className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl w-full text-xl shadow-xl"
             onClick={() => handleScore("rope")}
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300, duration: 0.5, delay: 0.8 }}
@@ -148,7 +148,7 @@ function Play() {
             ✅ Rope (Correct)
           </motion.button>
           <motion.button
-            className="bg-red-500 hover:bg-red-600 text-white px-8 py-4 rounded-xl w-2/3 text-xl shadow-xl"
+            className="bg-red-500 hover:bg-red-600 text-white px-8 py-4 rounded-xl w-full text-xl shadow-xl"
             onClick={() => handleScore("trap")}
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300, duration: 0.5, delay: 1 }}

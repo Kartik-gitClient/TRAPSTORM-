@@ -19,6 +19,7 @@ function App() {
         <Route path="/mode" element={<ModeSelect />} />
         <Route path="/lobby" element={<Lobby />} />
         <Route path="/play" element={<Play />} /> {/* Storm Mode */}
+
         <Route path="/roast-rumble" element={<RoastRumble />} />
          <Route path="/mind-meld" element={<MindMeld />} />
         
