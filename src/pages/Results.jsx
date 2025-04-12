@@ -32,7 +32,7 @@ function Results() {
       >
         {sortedPlayers.slice(0, 3).map((player, index) => {
           const height = 100 + (2 - index) * 50;
-          const podiumColors = ["#000000", "#555555", "#aaaaaa"];
+          const podiumColors = ["#FFD700", "#C0C0C0", "#CD7F32"];
           const textColors = ["#ffffff", "#ffffff", "#000000"];
           const place = ["🥇", "🥈", "🥉"][index];
 

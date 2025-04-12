@@ -23,9 +23,16 @@ function Lobby() {
   const startGame = () => {
     const validPlayers = players.filter((p) => p.trim() !== "");
 
-    if (validPlayers.length < 2 || validPlayers.length >= 8) {
-      alert("ENTER VALID PLAYER LENGTH TO PROCEED MIN(2) MAX(8)");
-      navigate("/");
+    if (validPlayers.length < 2 || validPlayers.length >= 8 ) {
+      alert("ENTER VALID PLAYER LENGTH  TO PROCEED MIN(2) MAX(8)");
+      navigate("/mode");
+      return;
+    }
+    const hasDuplicates = new Set(validPlayers.map(p => p.trim().toLowerCase())).size !== validPlayers.length;
+
+    if (hasDuplicates) {
+      alert("ENTER APPROPRIATE AND DISTINGUISHED NAMES");
+      navigate("/mode");
       return;
     }
 

@@ -50,10 +50,11 @@ function Play() {
   const handleScore = (type) => {
     addScore(currentPlayer, type);
     const isLastPlayer = currentPlayerIndex === players.length - 1;
+    const normalLastRound = roundNumber >= 4 
     const isLastRound = roundNumber >= 3;
 
     if (mode === "normal") {
-      if (isLastPlayer && isLastRound) {
+      if (isLastPlayer && normalLastRound) {
         navigate("/results");
       } else {
         nextTurn();

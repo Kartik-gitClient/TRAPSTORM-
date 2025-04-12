@@ -5,7 +5,7 @@ function Settings() {
     const navigate = useNavigate();
   return (
     <motion.div
-      className="min-h-screen bg-gradient-to-br from-purple-300 to-purple-700 text-white p-8"
+      className="min-h-screen bg-white text-black p-8"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
@@ -22,7 +22,7 @@ function Settings() {
 
       <motion.button
         onClick={() => navigate(-1)}
-        className="bg-white text-purple-700 font-semibold px-6 py-3 rounded-xl shadow-lg hover:bg-purple-200 transition"
+        className="bg-black text-white font-semibold p-2 rounded-xl shadow-lg hover:bg-gray-700 transition"
         whileHover={{ scale: 1.05 }}
       >
         🔙 Back

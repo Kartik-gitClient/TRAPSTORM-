@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import Header from "../components/Header";
+import VersionControl from "../components/VersionControl";
 
 function Home() {
   return (
     <>
       <Header />
-      <div className="min-h-screen w-full flex flex-col items-center justify-start bg-white text-gray-800 mt-15 px-6 pt-5">
+      <div className="min-h-screen w-full flex flex-col items-center justify-start bg-white text-gray-800 mt-10 px-6 pt-5">
         <div className="text-center w-full max-w-3xl space-y-12">
 
           {/* Main Title */}
@@ -39,6 +40,7 @@ function Home() {
             Start Game
           </motion.a>
         </div>
+        <VersionControl />
       </div>
     </>
   );

@@ -12,7 +12,7 @@ function Header() {
         transition={{ duration: 0.6 }}
       >
         <nav className="flex gap-3 items-center">
-          <motion.Link
+          <Link
             to="/how-to-play"
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.95 }}
@@ -20,9 +20,9 @@ function Header() {
             className="inline-block bg-gray-900 text-center hover:bg-gray-800 text-white px-8 py-4 rounded-lg text-lg font-medium shadow-lg transition-all"
           >
             <HelpCircle className="w-5 h-5" />
-          </motion.Link>
+          </Link>
 
-          <motion.Link
+          <Link
             to="/settings"
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.95 }}
@@ -31,7 +31,7 @@ function Header() {
           >
             <Settings className="w-5 h-5" />
 
-          </motion.Link>
+          </Link>
         </nav>
       </motion.header>
     </>
