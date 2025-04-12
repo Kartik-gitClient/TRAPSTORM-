@@ -44,7 +44,7 @@ function Play() {
     
 
 
-    setTimeLeft(35);
+    setTimeLeft(1);
     setIsTimeUp(false);
 
     const timer = setInterval(() => {
