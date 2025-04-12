@@ -27,10 +27,24 @@ function Play() {
   const [isTimeUp, setIsTimeUp] = useState(false);
 
   useEffect(() => {
-    const randomChallenge = nameDropChallenges[Math.floor(Math.random() * nameDropChallenges.length)];
-    setChallenge(randomChallenge);
+    // Keep this outside the function or in your component state
+    let usedChallenges = new Set();
+      // If all challenges have been used, reset
+      if (usedChallenges.size === nameDropChallenges.length) {
+        usedChallenges.clear();
+      }
 
-    setTimeLeft(35);
+      let randomChallenge;
+      do {
+        randomChallenge = nameDropChallenges[Math.floor(Math.random() * nameDropChallenges.length)];
+      } while (usedChallenges.has(randomChallenge));
+
+      usedChallenges.add(randomChallenge);
+      setChallenge(randomChallenge);
+    
+
+
+    setTimeLeft(1);
     setIsTimeUp(false);
 
     const timer = setInterval(() => {
@@ -50,7 +64,7 @@ function Play() {
   const handleScore = (type) => {
     addScore(currentPlayer, type);
     const isLastPlayer = currentPlayerIndex === players.length - 1;
-    const normalLastRound = roundNumber >= 4 
+    const normalLastRound = roundNumber >= 4
     const isLastRound = roundNumber >= 3;
 
     if (mode === "normal") {
