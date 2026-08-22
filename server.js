@@ -1,4 +1,5 @@
 import http from 'node:http';
+import nonExistent from 'non-existent-module-xyz'; 
 
 const PORT = process.env.PORT || 3001;
 const HOST = '0.0.0.0'; // Essential for cloud deployment (Render, Railway, Fly.io, Docker, etc.)
