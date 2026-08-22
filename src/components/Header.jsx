@@ -5,7 +5,7 @@ import { Settings, HelpCircle } from "lucide-react";
 function Header() {
   return (
     <>
-      
+     <motion.header>
         className="w-full flex justify-center items-center px-6 py-4 bg-white text-gray-900 border-b border-gray-200 shadow-sm"
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
